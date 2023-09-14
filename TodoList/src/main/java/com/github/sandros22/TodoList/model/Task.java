@@ -16,15 +16,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@SuppressWarnings("unused")
 public class Task {
 
 	@Id
 	private UUID id;
 
-	@SuppressWarnings("unused")
 	private String title;
 
-	@SuppressWarnings("unused")
 	private String description;
 
 }
