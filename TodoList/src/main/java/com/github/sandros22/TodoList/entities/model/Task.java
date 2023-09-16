@@ -2,7 +2,10 @@ package com.github.sandros22.TodoList.entities.model;
 
 import java.util.UUID;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +15,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -20,6 +22,7 @@ import lombok.ToString;
 public class Task {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
 
 	private String title;
@@ -29,6 +32,10 @@ public class Task {
 	public Task(String title, String description) {
 		this.title = title;
 		this.description = description;
+	}
+
+	public Task() {
+
 	}
 
 }
