@@ -1,7 +1,12 @@
 package com.github.sandros22.TodoList.controller;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +39,16 @@ public class TaskController {
 		taskService.save(newTask);
 		return newTask;
 
+	}
+
+	@DeleteMapping
+	public @ResponseBody Object deleteTask(@RequestParam(name = "id") UUID id) {
+		Optional<Task> task = taskService.findById(id);
+		if (task.isEmpty()) {
+			return HttpStatusCode.valueOf(404);
+		} else {
+			return taskService.delete(task.get());
+		}
 	}
 
 }
